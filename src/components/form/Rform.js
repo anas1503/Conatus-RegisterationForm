@@ -4,7 +4,8 @@ import logo from '../../../src/assets/ill.svg';
 import validate from './Validation';
 import {
     TextField,
-    Button
+    Button,
+    Box
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -163,7 +164,7 @@ const Rform = () => {
                         name="PhoneNo"
                     />
                     {errors.PhoneNo && <p className="error"   >{errors.PhoneNo}</p>}
-                   
+
                     <TextField
                         autoComplete="off"
                         placeholder="Hackerrank username"
@@ -176,8 +177,8 @@ const Rform = () => {
                         name="hackerrank"
                     />
                     {errors.hackerrank && <p className="error"   >{errors.hackerrank}</p>}
-                   
-                   
+
+
                     <TextField
                         autoComplete="off"
                         placeholder="Link(codechef,behance,github,portfolio etc)"
@@ -229,9 +230,17 @@ const Rform = () => {
                     {errors.Residence && <p className="error" >{errors.Residence}</p>}
 
 
-                    <Button variant="contained" color="primary" onClick={onSubmit} style={{ marginTop: "30px", backgroundColor: "#e6b938" }}>
-                        Submit
-                    </Button>
+
+                    <Box textAlign='center'>
+                        <Button className="button" variant="contained" color="primary" onClick={onSubmit} style={{
+                            marginTop: "30px",
+                            backgroundColor: "#e6b938"
+                        }}  >
+                            Submit
+                        </Button>
+                    </Box>
+
+
 
                 </form>
 
