@@ -3,13 +3,13 @@ export default function validation(data){
 let errors ={};
 
 if(!data.Name.trim()){
-    errors.Name="Enter Full Name";
+    errors.Name="Full Name Required";
 }
 
 if(!data.RollNo){
-    errors.RollNo="Enter UnivRollNo";
-} else if (data.RollNo.length !== 13) {
-    errors.RollNo = "Invalid UnivRollNo";
+    errors.RollNo=" RollNo Required";
+} else if (!data.RollNo.length) {
+    errors.RollNo = "RollNo Required";
 } else if (!/^\d+$/.test(data.RollNo)){
     errors.RollNo = "Enter Numbers Only";
 }
@@ -28,17 +28,21 @@ if(!data.Email)
 
 
 if(!data.PhoneNo){
-    errors.PhoneNo = "Enter Phone Number";
-} else if(!data.PhoneNo.length !== 10){
+    errors.PhoneNo = " Phone Number Required";
+} else if(data.PhoneNo.length !== 10){
     errors.PhoneNo = "phone Number should be of 10 digits"
 }
 
+if(!data.hackerrank){
+    errors.hackerrank="  Hackerrank handle Required";
+}
+
 if(!data.Skills){
-    errors.Skills="Enter Skills";
+    errors.Skills=" Skills Required";
 }
 
 if(!data.Residence) {
-    errors.Residence = "Enter Residence";
+    errors.Residence = "Select your Residence  ";
 }
 
 return errors;

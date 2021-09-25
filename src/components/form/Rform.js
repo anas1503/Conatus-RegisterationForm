@@ -30,6 +30,7 @@ const Rform = () => {
         Branch: "",
         Email: "",
         PhoneNo: "",
+        hackerrank: "",
         Portfolio: "",
         Skills: "",
         Residence: ""
@@ -77,7 +78,7 @@ const Rform = () => {
                     <TextField
                         autoComplete="off"
                         placeholder="Enter Your Name"
-                        label="Name"
+                        label="Name*"
                         value={data.Name}
                         onChange={(e) => handle(e)}
                         variant="outlined"
@@ -93,7 +94,7 @@ const Rform = () => {
                     <TextField
                         autoComplete="off"
                         placeholder="Enter Roll no."
-                        label="Roll Number"
+                        label="Roll Number*"
                         value={data.RollNo}
                         onChange={(e) => handle(e)}
                         variant="outlined"
@@ -107,7 +108,7 @@ const Rform = () => {
                     <TextField
                         autoComplete="off"
                         placeholder="Enter Your branch"
-                        label="Branch"
+                        label="Branch*"
                         value={data.Branch}
                         onChange={(e) => handle(e)}
                         variant="outlined"
@@ -140,7 +141,7 @@ const Rform = () => {
                     <TextField
                         autoComplete="off"
                         placeholder="College email id"
-                        label="Email id"
+                        label="Email id*"
                         value={data.Email}
                         onChange={(e) => handle(e)}
                         variant="outlined"
@@ -153,7 +154,7 @@ const Rform = () => {
                     <TextField
                         autoComplete="off"
                         placeholder="WhatsApp no."
-                        label="Phone No."
+                        label="Phone No.*"
                         value={data.PhoneNo}
                         onChange={(e) => handle(e)}
                         variant="outlined"
@@ -162,6 +163,21 @@ const Rform = () => {
                         name="PhoneNo"
                     />
                     {errors.PhoneNo && <p className="error"   >{errors.PhoneNo}</p>}
+                   
+                    <TextField
+                        autoComplete="off"
+                        placeholder="Hackerrank username"
+                        label="Hackerrank handle*"
+                        value={data.hackerrank}
+                        onChange={(e) => handle(e)}
+                        variant="outlined"
+                        fullWidth
+                        className={classes.inputField}
+                        name="hackerrank"
+                    />
+                    {errors.hackerrank && <p className="error"   >{errors.hackerrank}</p>}
+                   
+                   
                     <TextField
                         autoComplete="off"
                         placeholder="Link(codechef,behance,github,portfolio etc)"
@@ -178,7 +194,7 @@ const Rform = () => {
                     <TextField
                         autoComplete="off"
                         placeholder="HTML,C++,Designing,ML etc."
-                        label="Skills"
+                        label="Skills*"
                         value={data.Skills}
                         onChange={(e) => handle(e)}
                         variant="outlined"
@@ -190,7 +206,7 @@ const Rform = () => {
                     <TextField
                         autoComplete="off"
                         placeholder="Residence"
-                        label="Residence"
+                        label="Residence*"
                         value={data.Residence}
                         onChange={(e) => handle(e)}
                         select
@@ -198,7 +214,6 @@ const Rform = () => {
                         fullWidth
                         className={classes.inputField}
                         name="Residence"
-
                     >
                         <MenuItem className={classes.menustyle} value=" Girls Hostel" >
                             Girls Hostel

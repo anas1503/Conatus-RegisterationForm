@@ -9,7 +9,6 @@ body{
   margin:0;
   padding:0;
   box-sizing: border-box;
-  font-family:Gilroy;
   
 }
 
@@ -37,13 +36,14 @@ body{
     letter-spacing: 3px;
     color:black;
     font-weight: bolder;
+    font-family:Gilroy;
+
   }
 
   .error{
     color:tomato;
     margin: 0px;
     margin-bottom: 10px;
-    /* background: #000; */
   }
   
   @media screen and (max-width: 768px) {
