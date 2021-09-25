@@ -1,7 +1,16 @@
+@font-face {
+  font-family: 'Gilroy';
+  src: url(../../fonts//Gilroy-ExtraBold.otf);
+  font-weight: 100;
+} 
+
+
 body{
   margin:0;
   padding:0;
   box-sizing: border-box;
+  font-family:Gilroy;
+  
 }
 
 .box {
@@ -12,13 +21,29 @@ body{
   .box-secondary {
     padding: 30px;
     overflow: auto;
+
   }
   
   .box-primary {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(66, 224, 190);
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+    background-color: #e6b938;
+  }
+
+  .heading{
+    align-items: center;
+    letter-spacing: 3px;
+    color:black;
+    font-weight: bolder;
+  }
+
+  .error{
+    color:tomato;
+    margin: 0px;
+    margin-bottom: 10px;
+    /* background: #000; */
   }
   
   @media screen and (max-width: 768px) {
