@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: "Montserrat",
         padding: ".6rem",
     },
+     
 
 }));
 
@@ -232,9 +233,10 @@ const Rform = () => {
 
 
                     <Box textAlign='center'>
-                        <Button className="button" variant="contained" color="primary" onClick={onSubmit} style={{
+                        <Button fullWidth="true" className="button" variant="contained" color="primary" onClick={onSubmit} style={{
                             marginTop: "30px",
-                            backgroundColor: "#e6b938"
+                            backgroundColor: "#e6b938",
+                            
                         }}  >
                             Submit
                         </Button>

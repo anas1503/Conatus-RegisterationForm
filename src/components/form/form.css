@@ -28,7 +28,15 @@ body{
     justify-content: center;
     align-items: center;
     clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
-    background-color: #e6b938;
+    /* background-color: #e6b938; */
+
+    background: hsla(33, 100%, 53%, 1);
+
+background: linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
+
+background: -moz-linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
+
+background: -webkit-linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
   }
 
   .heading{
