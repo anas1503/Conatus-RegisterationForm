@@ -2,14 +2,14 @@
   font-family: 'Gilroy';
   src: url(../../fonts//Gilroy-ExtraBold.otf);
   font-weight: 100;
-} 
+}
 
 
 body{
   margin:0;
   padding:0;
   box-sizing: border-box;
-  
+
 }
 
 .box {
@@ -22,7 +22,7 @@ body{
     overflow: auto;
 
   }
-  
+
   .box-primary {
     display: flex;
     justify-content: center;
@@ -54,8 +54,12 @@ background: -webkit-linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 1
     margin-bottom: 10px;
   }
 
-   
-  
+  .captcha-box {
+    margin: 4% auto;
+    width: min-content;
+  }
+
+
   @media screen and (max-width: 768px) {
     .box-primary {
       display: none;

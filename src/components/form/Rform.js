@@ -1,68 +1,65 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import './form.css';
 import logo from '../../../src/assets/ill.svg';
 import validate from './Validation';
 import {
     TextField,
     Button,
-    Box
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import MenuItem from "@material-ui/core/MenuItem";
-
+    Box,
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
-        width: "100%",
+        width: '100%',
         margin: theme.spacing(1, 0),
     },
     menustyle: {
-        fontFamily: "Montserrat",
-        padding: ".6rem",
+        fontFamily: 'Montserrat',
+        padding: '.6rem',
     },
-     
+
 
 }));
 
 const Rform = () => {
     const [data, setData] = useState({
-        Name: "",
-        RollNo: "",
-        Branch: "",
-        Email: "",
-        PhoneNo: "",
-        hackerrank: "",
-        Portfolio: "",
-        Skills: "",
-        Residence: ""
-    })
+        name: '',
+        rollNumber: '',
+        branch: '',
+        email: '',
+        phoneNumber: '',
+        portfolio: '',
+        skills: '',
+        residence: '',
+    });
 
     const [errors, setErrors] = useState({});
-
 
 
     const handle = (e) => {
         const name = e.target.name;
         const value = e.target.value;
 
-        setData({ ...data, [name]: value })
-        setErrors({ ...errors, [name]: "" })
-    }
+        setData({ ...data, [name]: value });
+        setErrors({ ...errors, [name]: '' });
+    };
 
     const onSubmit = () => {
 
         setErrors(validate(data));
 
         if (Object.keys(validate(data)).length === 0) {
-            console.log("all well");
+            console.log('all well', data);
         } else {
-            console.log("error");
+            console.log('error');
         }
 
 
-    }
-
+    };
 
 
     const classes = useStyles();
@@ -70,59 +67,60 @@ const Rform = () => {
     return (
         <div className="box">
             <div className="box-primary">
-                <img src={logo} className="ill" height="400px" alt="Illustration" />
+                <img src={logo} className="ill" height="400px" alt="Illustration"/>
             </div>
             <div className="box-secondary">
-                <h2 className="heading" style={{ textAlign: "center" }}>TEAM CONATUS</h2>
-                <h6 className="heading" style={{ textAlign: "center", margin: "0" }}>PRESENTS</h6>
-                <h1 className="heading" style={{ textAlign: "center" }}>QUEST'21</h1>
-                <form >
+                <h2 className="heading" style={{ textAlign: 'center' }}>TEAM CONATUS</h2>
+                <h6 className="heading" style={{ textAlign: 'center', margin: '0' }}>PRESENTS</h6>
+                <h1 className="heading" style={{ textAlign: 'center' }}>QUEST'21</h1>
+                <form>
                     <TextField
+                        error={!!errors.name}
+                        helperText={!!errors.name ? errors.name : ''}
                         autoComplete="off"
-                        placeholder="Enter Your Name"
+                        placeholder="Enter your name"
                         label="Name*"
-                        value={data.Name}
+                        value={data.name}
                         onChange={(e) => handle(e)}
                         variant="outlined"
                         fullWidth
                         className={classes.inputField}
-                        name="Name"
+                        name="name"
                         id="t1"
-
                     />
-                    {errors.Name && <p className="error" >{errors.Name}</p>}
-
 
                     <TextField
+                        error={!!errors.rollNumber}
+                        helperText={!!errors.rollNumber ? errors.rollNumber : 'Note: University Roll Number'}
                         autoComplete="off"
-                        placeholder="Enter Roll no."
+                        placeholder="Enter roll number"
                         label="Roll Number*"
-                        value={data.RollNo}
+                        value={data.rollNumber}
                         onChange={(e) => handle(e)}
                         variant="outlined"
                         fullWidth
                         className={classes.inputField}
-                        name="RollNo"
+                        name="rollNumber"
                     />
-                    {errors.RollNo && <p className="error"  >{errors.RollNo}</p>}
-
 
                     <TextField
+                        error={!!errors.branch}
+                        helperText={!!errors.branch ? errors.branch : ''}
                         autoComplete="off"
-                        placeholder="Enter Your branch"
+                        placeholder="Select your branch"
                         label="Branch*"
-                        value={data.Branch}
+                        value={data.branch}
                         onChange={(e) => handle(e)}
                         variant="outlined"
                         fullWidth
                         select
                         className={classes.inputField}
-                        name="Branch"
+                        name="branch"
                     >
-                        <MenuItem className={classes.menustyle} value="CSE"   >
+                        <MenuItem className={classes.menustyle} value="CSE">
                             CSE
                         </MenuItem>
-                        <MenuItem className={classes.menustyle} value="CS" >
+                        <MenuItem className={classes.menustyle} value="CS">
                             CS
                         </MenuItem>
                         <MenuItem className={classes.menustyle} value="CSE(ML&AI)">
@@ -138,114 +136,107 @@ const Rform = () => {
                             IT
                         </MenuItem>
                     </TextField>
-                    {errors.Branch && <p className="error"   >{errors.Branch}</p>}
 
                     <TextField
+                        error={!!errors.email}
+                        helperText={!!errors.email ? errors.email : 'Eg. ayushXXXXXX@akgec.ac.in'}
                         autoComplete="off"
-                        placeholder="College email id"
-                        label="Email id*"
-                        value={data.Email}
+                        placeholder="Enter your email"
+                        label="Email*"
+                        value={data.email}
                         onChange={(e) => handle(e)}
                         variant="outlined"
                         fullWidth
                         className={classes.inputField}
-                        name="Email"
+                        name="email"
                     />
-                    {errors.Email && <p className="error" >{errors.Email}</p>}
 
                     <TextField
+                        error={!!errors.phoneNumber}
+                        helperText={!!errors.phoneNumber ? errors.phoneNumber : 'Note: It should be of 10 digits. Preferably enter Whatsapp number'}
                         autoComplete="off"
-                        placeholder="WhatsApp no."
-                        label="Phone No.*"
-                        value={data.PhoneNo}
+                        placeholder="Enter your phone number"
+                        label="Phone Number*"
+                        value={data.phoneNumber}
                         onChange={(e) => handle(e)}
                         variant="outlined"
                         fullWidth
                         className={classes.inputField}
-                        name="PhoneNo"
+                        name="phoneNumber"
                     />
-                    {errors.PhoneNo && <p className="error"   >{errors.PhoneNo}</p>}
-
-                    <TextField
-                        autoComplete="off"
-                        placeholder="Hackerrank username"
-                        label="Hackerrank handle*"
-                        value={data.hackerrank}
-                        onChange={(e) => handle(e)}
-                        variant="outlined"
-                        fullWidth
-                        className={classes.inputField}
-                        name="hackerrank"
-                    />
-                    {errors.hackerrank && <p className="error"   >{errors.hackerrank}</p>}
-
 
                     <TextField
                         autoComplete="off"
                         placeholder="Link(codechef,behance,github,portfolio etc)"
                         label="Link to any handle(if any)"
-                        value={data.Portfolio}
+                        value={data.portfolio}
                         onChange={(e) => handle(e)}
                         variant="outlined"
                         fullWidth
                         multiline
                         className={classes.inputField}
-                        name="Portfolio"
+                        name="portfolio"
                     />
-                    {errors.Portfolio && <p className="error">{errors.Portfolio}</p>}
                     <TextField
+                        error={!!errors.skills}
+                        helperText={!!errors.skills ? errors.skills : 'Eg. HTML,C++,Designing,ML etc.'}
                         autoComplete="off"
-                        placeholder="HTML,C++,Designing,ML etc."
+                        placeholder="Enter your skills"
                         label="Skills*"
-                        value={data.Skills}
+                        value={data.skills}
                         onChange={(e) => handle(e)}
                         variant="outlined"
                         fullWidth
                         className={classes.inputField}
-                        name="Skills"
+                        name="skills"
                     />
-                    {errors.Skills && <p className="error">{errors.Skills}</p>}
                     <TextField
+                        error={!!errors.residence}
+                        helperText={!!errors.residence ? errors.residence : ''}
                         autoComplete="off"
-                        placeholder="Residence"
+                        placeholder="Select your residence"
                         label="Residence*"
-                        value={data.Residence}
+                        value={data.residence}
                         onChange={(e) => handle(e)}
                         select
                         variant="outlined"
                         fullWidth
                         className={classes.inputField}
-                        name="Residence"
+                        name="residence"
                     >
-                        <MenuItem className={classes.menustyle} value=" Girls Hostel" >
+                        <MenuItem className={classes.menustyle} value=" Girls Hostel">
                             Girls Hostel
                         </MenuItem>
-                        <MenuItem className={classes.menustyle} value="Boy Hostel" >
+                        <MenuItem className={classes.menustyle} value="Boy Hostel">
                             Boys Hostel
                         </MenuItem>
-                        <MenuItem className={classes.menustyle} value="Day Scholar" >
+                        <MenuItem className={classes.menustyle} value="Day Scholar">
                             Day Scholar
                         </MenuItem>
 
                     </TextField>
-                    {errors.Residence && <p className="error" >{errors.Residence}</p>}
 
-
-
+                    <div className="captcha-box">
+                        <ReCAPTCHA
+                            size='normal'
+                            theme='light'
+                            sitekey="6LcXYI8cAAAAAGTeMOaF_hmnAWwPsms8leDEHAcN"
+                            onChange={(e) => console.log(e)}
+                        />
+                    </div>
                     <Box textAlign='center'>
-                        <Button fullWidth="true" className="button" variant="contained" color="primary" onClick={onSubmit} style={{
-                            marginTop: "30px",
-                            backgroundColor: "#e6b938",
-                            
-                        }}  >
+                        <Button fullWidth="true" className="button" variant="contained" color="primary"
+                                onClick={onSubmit} style={{
+                            marginTop: '10px',
+                            backgroundColor: '#e6b938',
+
+                        }}>
                             Submit
                         </Button>
                     </Box>
 
 
-
                 </form>
-
 
 
             </div>
@@ -255,7 +246,7 @@ const Rform = () => {
     );
 };
 
-export default Rform
+export default Rform;
 
 
 
