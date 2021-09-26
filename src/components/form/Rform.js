@@ -6,10 +6,12 @@ import {
     TextField,
     Button,
     Box,
+    InputAdornment
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { AccountCircle, School, Email, Phone, Link, Apps } from '@mui/icons-material';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -45,8 +47,8 @@ const Rform = () => {
         const value = e.target.value;
         setErrors(prevState => ({
             ...prevState,
-            [keyName]: ''
-        }))
+            [keyName]: '',
+        }));
         setData({ ...data, [keyName]: value });
         if (!value) {
             setErrors(prevState => ({ ...prevState, [keyName]: `${keyName} is required` }));
@@ -56,7 +58,7 @@ const Rform = () => {
     const handleReCaptcha = (e) => {
         setData(prevState => ({ ...prevState, recaptcha: `conatus${e}admin` }));
         setErrors(prevState => ({ ...prevState, recaptcha: '' }));
-    }
+    };
 
     const onSubmit = () => {
 
@@ -97,11 +99,25 @@ const Rform = () => {
                         className={classes.inputField}
                         name="name"
                         id="t1"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <AccountCircle />
+                                </InputAdornment>
+                            ),
+                        }}
                     />
 
                     <TextField
                         error={!!errors.rollNumber}
                         helperText={!!errors.rollNumber ? errors.rollNumber : 'Note: University Roll Number'}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <School />
+                                </InputAdornment>
+                            ),
+                        }}
                         autoComplete="off"
                         placeholder="Enter roll number"
                         label="Roll Number*"
@@ -151,6 +167,13 @@ const Rform = () => {
                         error={!!errors.email}
                         helperText={!!errors.email ? errors.email : 'Eg. ayushXXXXXX@akgec.ac.in'}
                         autoComplete="off"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <Email />
+                                </InputAdornment>
+                            ),
+                        }}
                         placeholder="Enter your email"
                         label="Email*"
                         value={data.email}
@@ -165,6 +188,13 @@ const Rform = () => {
                         error={!!errors.phoneNumber}
                         helperText={!!errors.phoneNumber ? errors.phoneNumber : 'Note: It should be of 10 digits. Preferably enter Whatsapp number'}
                         autoComplete="off"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <Phone />
+                                </InputAdornment>
+                            ),
+                        }}
                         placeholder="Enter your phone number"
                         label="Phone Number*"
                         value={data.phoneNumber}
@@ -178,6 +208,13 @@ const Rform = () => {
                     <TextField
                         helperText='Hint: Codechef, Behance, Github, Portfolio etc'
                         autoComplete="off"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <Link />
+                                </InputAdornment>
+                            ),
+                        }}
                         placeholder="Enter links here..."
                         label="Link to any handle(if any)"
                         value={data.portfolio}
@@ -192,6 +229,13 @@ const Rform = () => {
                         error={!!errors.skills}
                         helperText={!!errors.skills ? errors.skills : 'Eg. HTML,C++,Designing,ML etc.'}
                         autoComplete="off"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <Apps />
+                                </InputAdornment>
+                            ),
+                        }}
                         placeholder="Enter your skills"
                         label="Skills*"
                         value={data.skills}
@@ -233,10 +277,12 @@ const Rform = () => {
                             theme='light'
                             sitekey="6LcXYI8cAAAAAGTeMOaF_hmnAWwPsms8leDEHAcN"
                             onExpired={(e) => {
-                                setErrors(prevState => ({...prevState, recaptcha: 'reCaptcha is required'}))
+                                setErrors(prevState => ({ ...prevState, recaptcha: 'reCaptcha is required' }));
+                                setData(prevState => ({ ...prevState, recaptcha: '' }));
                             }}
                             onErrored={(e) => {
-                                setErrors(prevState => ({...prevState, recaptcha: 'Invalid reCaptcha'}))
+                                setErrors(prevState => ({ ...prevState, recaptcha: 'Invalid reCaptcha' }));
+                                setData(prevState => ({ ...prevState, recaptcha: '' }));
                             }}
                             badge='inline'
                             onChange={(e) => {

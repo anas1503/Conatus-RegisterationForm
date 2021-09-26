@@ -9,3 +9,8 @@ body {
 *::-webkit-scrollbar{
      display: none;
  }
+
+.MuiInputAdornment-root {
+    color: hsla(33, 100%, 53%, 1);
+    background-color: transparent;
+}
