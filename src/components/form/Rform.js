@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './form.css';
 import logo from '../../../src/assets/ill.svg';
 import validate from './Validation';
@@ -6,12 +6,15 @@ import {
     TextField,
     Button,
     Box,
-    InputAdornment
+    InputAdornment,
+    Snackbar,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { AccountCircle, School, Email, Phone, Link, Apps } from '@mui/icons-material';
+import { useHistory } from 'react-router';
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,7 +43,25 @@ const Rform = () => {
     });
 
     const [errors, setErrors] = useState({});
+    const [open, setOpen] = useState(false);
+    const history = useHistory();
 
+    useEffect(() => {
+        const email = localStorage.getItem('email');
+        if (!email) {
+            history.push('/');
+        } else {
+            setData(prevState => ({
+                ...prevState,
+                email: email,
+            }));
+        }
+    }, [history]);
+
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handle = (e) => {
         const keyName = e.target.name;
@@ -61,16 +82,20 @@ const Rform = () => {
     };
 
     const onSubmit = () => {
-
         setErrors(validate(data));
-
         if (Object.keys(validate(data)).length === 0) {
             console.log('all well', data);
+            axios.post('https://conatus-registration.herokuapp.com/users', data).then((res) => {
+                console.log(res);
+                if (res.status === 201) {
+                    setOpen(true);
+                    setData({});
+                    localStorage.removeItem('email');
+                }
+            });
         } else {
             console.log('error');
         }
-
-
     };
 
 
@@ -102,7 +127,7 @@ const Rform = () => {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <AccountCircle />
+                                    <AccountCircle/>
                                 </InputAdornment>
                             ),
                         }}
@@ -114,7 +139,7 @@ const Rform = () => {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <School />
+                                    <School/>
                                 </InputAdornment>
                             ),
                         }}
@@ -149,35 +174,35 @@ const Rform = () => {
                         <MenuItem className={classes.menustyle} value="CS">
                             CS
                         </MenuItem>
-                        <MenuItem className={classes.menustyle} value="CSE(ML&AI)">
-                            CSE(ML&AI)
+                        <MenuItem className={classes.menustyle} value="CSE(ML/AI)">
+                            CSE(ML/AI)
                         </MenuItem>
                         <MenuItem className={classes.menustyle} value="CSE(DS)">
                             CSE(DS)
                         </MenuItem>
-                        <MenuItem className={classes.menustyle} value="CSE(CSIT)">
-                            CSIT
+                        <MenuItem className={classes.menustyle} value="CS/IT">
+                            CS/IT
                         </MenuItem>
-                        <MenuItem className={classes.menustyle} value="CSE(IT)">
+                        <MenuItem className={classes.menustyle} value="IT">
                             IT
                         </MenuItem>
                     </TextField>
 
                     <TextField
                         error={!!errors.email}
+                        disabled={true}
                         helperText={!!errors.email ? errors.email : 'Eg. ayushXXXXXX@akgec.ac.in'}
                         autoComplete="off"
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <Email />
+                                    <Email/>
                                 </InputAdornment>
                             ),
                         }}
                         placeholder="Enter your email"
                         label="Email*"
                         value={data.email}
-                        onChange={(e) => handle(e)}
                         variant="outlined"
                         fullWidth
                         className={classes.inputField}
@@ -191,7 +216,7 @@ const Rform = () => {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <Phone />
+                                    <Phone/>
                                 </InputAdornment>
                             ),
                         }}
@@ -211,7 +236,7 @@ const Rform = () => {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <Link />
+                                    <Link/>
                                 </InputAdornment>
                             ),
                         }}
@@ -232,7 +257,7 @@ const Rform = () => {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <Apps />
+                                    <Apps/>
                                 </InputAdornment>
                             ),
                         }}
@@ -259,10 +284,10 @@ const Rform = () => {
                         className={classes.inputField}
                         name="residence"
                     >
-                        <MenuItem className={classes.menustyle} value=" Girls Hostel">
+                        <MenuItem className={classes.menustyle} value="Girls Hostel">
                             Girls Hostel
                         </MenuItem>
-                        <MenuItem className={classes.menustyle} value="Boy Hostel">
+                        <MenuItem className={classes.menustyle} value="Boys Hostel">
                             Boys Hostel
                         </MenuItem>
                         <MenuItem className={classes.menustyle} value="Day Scholar">
@@ -310,8 +335,12 @@ const Rform = () => {
 
 
             </div>
-
-
+            <Snackbar
+                open={open}
+                autoHideDuration={2500}
+                onClose={handleClose}
+                message="Form Submitted Successfully"
+            />
         </div>
     );
 };

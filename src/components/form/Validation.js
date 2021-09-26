@@ -39,11 +39,11 @@ export default function validation(data) {
         errors.residence = 'Residence required';
     }
 
-    if (!data.recaptcha) {
-        errors.recaptcha = 'reCaptcha required';
-    } else if(!data.recaptcha.startsWith('conatus') && !data.recaptcha.endsWith('admin')) {
-        errors.recaptcha = 'Invalid reCaptcha'
-    }
+    // if (!data.recaptcha) {
+    //     errors.recaptcha = 'reCaptcha required';
+    // } else if(!data.recaptcha.startsWith('conatus') && !data.recaptcha.endsWith('admin')) {
+    //     errors.recaptcha = 'Invalid reCaptcha'
+    // }
 
     return errors;
 
