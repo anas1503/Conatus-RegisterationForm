@@ -11,7 +11,7 @@
 }
 
 .box-secondary {
-    padding: 30px;
+    padding: 5%;
     overflow: auto;
 }
 
@@ -35,18 +35,18 @@
     letter-spacing: 3px;
     color: black;
     font-weight: bolder;
-    font-family: Gilroy;
 }
 
 .error {
-    font-size: .7em;
-    font-weight: 400;
+    font-size: .8em;
+    font-weight: 500;
     color: #f44336;
     /*margin: 0px;*/
     margin: 1% 0 2% 2%;
 }
 
 .captcha-box {
+    text-align: center;
     margin: 4% auto;
     width: min-content;
 }

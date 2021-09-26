@@ -41,12 +41,15 @@ const Rform = () => {
 
 
     const handle = (e) => {
-        const name = e.target.name;
+        const keyName = e.target.name;
         const value = e.target.value;
-
-        setData({ ...data, [name]: value });
+        setErrors(prevState => ({
+            ...prevState,
+            [keyName]: ''
+        }))
+        setData({ ...data, [keyName]: value });
         if (!value) {
-            setErrors(prevState => ({ ...prevState, [name]: `${name} is required` }));
+            setErrors(prevState => ({ ...prevState, [keyName]: `${keyName} is required` }));
         }
     };
 
@@ -233,10 +236,10 @@ const Rform = () => {
                                 handleReCaptcha(e);
                             }}
                         />
+                        {
+                            !!errors.recaptcha && <div className="error">{errors.recaptcha}</div>
+                        }
                     </div>
-                    {
-                        !!errors.recaptcha && <div className="error">{errors.recaptcha}</div>
-                    }
                     <Box textAlign='center'>
                         <Button fullWidth className="button" variant="contained" color="primary"
                                 onClick={onSubmit} style={{
