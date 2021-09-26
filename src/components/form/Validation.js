@@ -39,6 +39,10 @@ export default function validation(data) {
         errors.residence = 'Residence required';
     }
 
+    if (!data.recaptcha) {
+        errors.recaptcha = 'Recaptcha required';
+    }
+
     return errors;
 
 }

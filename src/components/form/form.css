@@ -1,14 +1,8 @@
-@font-face {
-    font-family: "Gilroy";
-    src: url(../../fonts//Gilroy-ExtraBold.otf);
-    font-weight: 100;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/*@font-face {*/
+/*    font-family: "Gilroy";*/
+/*    src: url(../../fonts//Gilroy-ExtraBold.otf);*/
+/*    font-weight: 100;*/
+/*}*/
 
 .box {
     display: grid;
@@ -45,9 +39,11 @@ body {
 }
 
 .error {
-    color: tomato;
-    margin: 0px;
-    margin-bottom: 10px;
+    font-size: .7em;
+    font-weight: 400;
+    color: #f44336;
+    /*margin: 0px;*/
+    margin: 1% 0 2% 2%;
 }
 
 .captcha-box {

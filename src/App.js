@@ -1,12 +1,19 @@
-import React from 'react'
-import Rform from './components/form/Rform'
+import React from 'react';
+import Rform from './components/form/Rform';
 
 const App = () => {
-  return (
-    <div>
-      <Rform/>
-    </div>
-  )
-}
+    const isProduction = process.env.NODE_ENV === 'production';
 
-export default App
+    if (isProduction) {
+        window.console.log = () => {
+        };
+    }
+
+    return (
+        <div>
+            <Rform/>
+        </div>
+    );
+};
+
+export default App;

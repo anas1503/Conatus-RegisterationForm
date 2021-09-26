@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1, 0),
     },
     menustyle: {
-        fontFamily: 'Montserrat',
         padding: '.6rem',
     },
 
@@ -35,6 +34,7 @@ const Rform = () => {
         portfolio: '',
         skills: '',
         residence: '',
+        recaptcha: '',
     });
 
     const [errors, setErrors] = useState({});
@@ -45,8 +45,14 @@ const Rform = () => {
         const value = e.target.value;
 
         setData({ ...data, [name]: value });
-        setErrors({ ...errors, [name]: '' });
+        if (!value) {
+            setErrors(prevState => ({ ...prevState, [name]: `${name} is required` }));
+        }
     };
+
+    const handleReCaptcha = (e) => {
+        setData(prevState => ({ ...prevState, recaptcha: e }));
+    }
 
     const onSubmit = () => {
 
@@ -166,8 +172,9 @@ const Rform = () => {
                     />
 
                     <TextField
+                        helperText='Hint: Codechef, Behance, Github, Portfolio etc'
                         autoComplete="off"
-                        placeholder="Link(codechef,behance,github,portfolio etc)"
+                        placeholder="Enter links here..."
                         label="Link to any handle(if any)"
                         value={data.portfolio}
                         onChange={(e) => handle(e)}
@@ -221,11 +228,17 @@ const Rform = () => {
                             size='normal'
                             theme='light'
                             sitekey="6LcXYI8cAAAAAGTeMOaF_hmnAWwPsms8leDEHAcN"
-                            onChange={(e) => console.log(e)}
+                            onChange={(e) => {
+                                console.log(e);
+                                handleReCaptcha(e);
+                            }}
                         />
                     </div>
+                    {
+                        !!errors.recaptcha && <div className="error">{errors.recaptcha}</div>
+                    }
                     <Box textAlign='center'>
-                        <Button fullWidth="true" className="button" variant="contained" color="primary"
+                        <Button fullWidth className="button" variant="contained" color="primary"
                                 onClick={onSubmit} style={{
                             marginTop: '10px',
                             backgroundColor: '#e6b938',
