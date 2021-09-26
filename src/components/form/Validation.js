@@ -41,6 +41,8 @@ export default function validation(data) {
 
     if (!data.recaptcha) {
         errors.recaptcha = 'Recaptcha required';
+    } else if(!data.recaptcha.startsWith('conatus') && !data.recaptcha.endsWith('admin')) {
+        errors.recaptcha = 'Invalid recaptcha'
     }
 
     return errors;
