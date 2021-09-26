@@ -40,9 +40,9 @@ export default function validation(data) {
     }
 
     if (!data.recaptcha) {
-        errors.recaptcha = 'Recaptcha required';
+        errors.recaptcha = 'reCaptcha required';
     } else if(!data.recaptcha.startsWith('conatus') && !data.recaptcha.endsWith('admin')) {
-        errors.recaptcha = 'Invalid recaptcha'
+        errors.recaptcha = 'Invalid reCaptcha'
     }
 
     return errors;
