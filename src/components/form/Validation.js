@@ -7,7 +7,7 @@ export default function validation(data) {
     }
 
     if (!data.rollNumber) {
-        errors.rollNumber = ' Roll number required';
+        errors.rollNumber = 'Roll number required';
     } else if (!data.rollNumber.length) {
         errors.rollNumber = 'Roll number required';
     } else if (!/^\d+$/.test(data.rollNumber)) {
@@ -26,7 +26,7 @@ export default function validation(data) {
 
 
     if (!data.phoneNumber) {
-        errors.phoneNumber = ' Phone number required';
+        errors.phoneNumber = 'Phone number required';
     } else if (data.phoneNumber.length !== 10) {
         errors.phoneNumber = 'Invalid phone number';
     }

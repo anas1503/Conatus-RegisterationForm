@@ -55,6 +55,7 @@ const Rform = () => {
 
     const handleReCaptcha = (e) => {
         setData(prevState => ({ ...prevState, recaptcha: `conatus${e}admin` }));
+        setErrors(prevState => ({ ...prevState, recaptcha: '' }));
     }
 
     const onSubmit = () => {
@@ -231,6 +232,13 @@ const Rform = () => {
                             size='normal'
                             theme='light'
                             sitekey="6LcXYI8cAAAAAGTeMOaF_hmnAWwPsms8leDEHAcN"
+                            onExpired={(e) => {
+                                setErrors(prevState => ({...prevState, recaptcha: 'reCaptcha is required'}))
+                            }}
+                            onErrored={(e) => {
+                                setErrors(prevState => ({...prevState, recaptcha: 'Invalid reCaptcha'}))
+                            }}
+                            badge='inline'
                             onChange={(e) => {
                                 console.log(e);
                                 handleReCaptcha(e);
