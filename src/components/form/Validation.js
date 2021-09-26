@@ -33,9 +33,7 @@ if(!data.PhoneNo){
     errors.PhoneNo = "phone Number should be of 10 digits"
 }
 
-if(!data.hackerrank){
-    errors.hackerrank="  Hackerrank handle Required";
-}
+
 
 if(!data.Skills){
     errors.Skills=" Skills Required";

@@ -32,7 +32,6 @@ const Rform = () => {
         Branch: "",
         Email: "",
         PhoneNo: "",
-        hackerrank: "",
         Portfolio: "",
         Skills: "",
         Residence: ""
@@ -166,18 +165,7 @@ const Rform = () => {
                     />
                     {errors.PhoneNo && <p className="error"   >{errors.PhoneNo}</p>}
 
-                    <TextField
-                        autoComplete="off"
-                        placeholder="Hackerrank username"
-                        label="Hackerrank handle*"
-                        value={data.hackerrank}
-                        onChange={(e) => handle(e)}
-                        variant="outlined"
-                        fullWidth
-                        className={classes.inputField}
-                        name="hackerrank"
-                    />
-                    {errors.hackerrank && <p className="error"   >{errors.hackerrank}</p>}
+                    
 
 
                     <TextField
