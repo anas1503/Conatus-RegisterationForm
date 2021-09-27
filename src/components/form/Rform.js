@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './form.css';
-import logo from '../../../src/assets/ill.svg';
+import banner from '../../../src/assets/banner.png';
+import quest from '../../../src/assets/logo quest.png';
 import validate from './Validation';
 import {
     TextField,
@@ -43,6 +44,7 @@ const Rform = () => {
     });
 
     const [message, setMessage] = useState('');
+    const [disabled, setDisabled] = useState(false);
     const [errors, setErrors] = useState({});
     const [open, setOpen] = useState(false);
     const history = useHistory();
@@ -86,6 +88,7 @@ const Rform = () => {
         setErrors(validate(data));
         if (Object.keys(validate(data)).length === 0) {
             console.log('all well', data);
+            setDisabled(true);
             axios.post('https://conatus-registration.herokuapp.com/users', data).then((res) => {
                 console.log(res);
                 if (res.status === 201) {
@@ -102,12 +105,16 @@ const Rform = () => {
                         rollNumber: ''
                     });
                     localStorage.removeItem('email');
-                    history.push('/');
+                    setTimeout(() => {
+                        history.push('/');
+                        setDisabled(false);
+                    }, 1500);
                 }
             }).catch((e) => {
                 console.log(e.response);
                 setMessage(e.response.data.error)
                 setOpen(true);
+                setDisabled(false)
             });
         } else {
             console.log('error');
@@ -120,12 +127,18 @@ const Rform = () => {
     return (
         <div className="box">
             <div className="box-primary">
-                <img src={logo} className="ill" height="400px" alt="Illustration"/>
+                {/*<img src={logo} className="ill" height="400px" alt="Illustration"/>*/}
+                <img src={banner} className="ill" height="500px" alt="Illustration"/>
             </div>
             <div className="box-secondary">
-                <h2 className="heading" style={{ textAlign: 'center' }}>TEAM CONATUS</h2>
-                <h6 className="heading" style={{ textAlign: 'center', margin: '0' }}>PRESENTS</h6>
-                <h1 className="heading" style={{ textAlign: 'center' }}>QUEST'21</h1>
+                <div className="heading-container">
+                    <h2 className="heading" style={{ textAlign: 'center' }}>TEAM CONATUS</h2>
+                    <h6 className="heading" style={{ textAlign: 'center', margin: '0' }}>PRESENTS</h6>
+
+                    <img src={quest}  height="60px" alt="Illustration"/>
+
+                </div>
+
                 <form>
                     <TextField
                         error={!!errors.name}
@@ -336,7 +349,7 @@ const Rform = () => {
                         }
                     </div>
                     <Box textAlign='center'>
-                        <Button fullWidth className="button" variant="contained" color="primary"
+                        <Button disabled={disabled} fullWidth className="button" variant="contained" color="primary"
                                 onClick={onSubmit} style={{
                             marginTop: '10px',
                             backgroundColor: '#e6b938',

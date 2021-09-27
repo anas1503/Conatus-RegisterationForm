@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../form/form.css';
-import logo from '../../../src/assets/ill.svg';
+
 import {
     TextField,
     Button,
@@ -11,6 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Email } from '@material-ui/icons';
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import quest from '../../assets/logo quest.png';
+import banner from '../../assets/banner.png';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -96,12 +98,18 @@ const EmailVerifyForm = () => {
     return (
         <div className="box">
             <div className="box-primary">
-                <img src={logo} className="ill" height="400px" alt="Illustration"/>
+                {/*<img src={logo} className="ill" height="400px" alt="Illustration"/>*/}
+                <img src={banner} className="ill" height="500px" alt="Illustration"/>
             </div>
             <div className="box-secondary">
-                <h2 className="heading" style={{ textAlign: 'center' }}>TEAM CONATUS</h2>
-                <h6 className="heading" style={{ textAlign: 'center', margin: '0' }}>PRESENTS</h6>
-                <h1 className="heading" style={{ textAlign: 'center' }}>QUEST'21</h1>
+                <div className="heading-container">
+                    <h2 className="heading" style={{ textAlign: 'center' }}>TEAM CONATUS</h2>
+                    <h6 className="heading" style={{ textAlign: 'center', margin: '0' }}>PRESENTS</h6>
+
+                    <img src={quest}  height="60px" alt="Illustration"/>
+
+            </div>
+
                 <form>
                     {
                         !isOtpSent && <TextField
