@@ -8,7 +8,7 @@ import {
     InputAdornment, Snackbar,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Email } from '@mui/icons-material';
+import { Email } from '@material-ui/icons';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 

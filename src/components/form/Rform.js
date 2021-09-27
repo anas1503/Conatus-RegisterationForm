@@ -12,7 +12,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { AccountCircle, School, Email, Phone, Link, Apps } from '@mui/icons-material';
+import { AccountCircle, School, Email, Phone, Link, Apps } from '@material-ui/icons'
 import { useHistory } from 'react-router';
 import axios from 'axios';
 
