@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const EmailVerifyForm = () => {
     const [email, setEmail] = useState('');
     const [open, setOpen] = useState(false);
+    const [disabled, setDisabled] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [otp, setOtp] = useState('');
     const [isOtpSent, setIsOtpSent] = useState(false);
@@ -49,6 +50,7 @@ const EmailVerifyForm = () => {
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
             setError({ email: 'Invalid email', otp: '' });
         } else {
+            setDisabled(true);
             setError({ email: '', otp: '' });
             // send otp
             axios.post('https://conatus-registration.herokuapp.com/sendOTP', { email }).then((res) => {
@@ -57,10 +59,16 @@ const EmailVerifyForm = () => {
                     setSnackbarMessage('OTP Sent successfully');
                     setOpen(true);
                     setIsOtpSent(true);
+                    setDisabled(false);
                 } else {
                     setSnackbarMessage('OTP not sent. Please try again');
                     setOpen(true);
+                    setDisabled(false);
                 }
+            }).catch((e) => {
+                setSnackbarMessage('OTP not sent. Please try again');
+                setDisabled(false);
+                setOpen(true);
             });
         }
     };
@@ -73,6 +81,7 @@ const EmailVerifyForm = () => {
             setError({ email: '', otp: 'OTP should be of 6 digits' });
         } else {
             // verify otp
+            setDisabled(true);
             setError({ email: '', otp: '' });
             console.log(otp);
             axios.post('https://conatus-registration.herokuapp.com/verifyOTP', { email, otp: Number(otp) }).then((res) => {
@@ -81,14 +90,19 @@ const EmailVerifyForm = () => {
                     setSnackbarMessage('OTP Verified successfully');
                     setOpen(true);
                     localStorage.setItem('email', email);
-                    history.push('/details');
+                    setTimeout(() => {
+                        setDisabled(false);
+                        history.push('/details');
+                    }, 1500);
                 } else {
                     setSnackbarMessage('Invalid OTP');
                     setOpen(true);
+                    setDisabled(false);
                 }
             }).catch((e) => {
                 setSnackbarMessage('Invalid OTP');
                 setOpen(true);
+                setDisabled(false);
             });
         }
     };
@@ -150,7 +164,7 @@ const EmailVerifyForm = () => {
                         />
                     }
                     <Box textAlign='center'>
-                        <Button fullWidth className="button" variant="contained" color="primary"
+                        <Button disabled={disabled} fullWidth className="button" variant="contained" color="primary"
                                 onClick={!isOtpSent ? onSubmit : verifyOtp} style={{
                             marginTop: '10px',
                             backgroundColor: '#e6b938',
