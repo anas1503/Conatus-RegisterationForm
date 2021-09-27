@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './form.css';
-import banner from '../../../src/assets/banner.png';
-import quest from '../../../src/assets/logo quest.png';
+import banner from '../../assets/banner.png';
+import quest from '../../assets/logo_quest.png';
 import validate from './Validation';
 import {
     TextField,

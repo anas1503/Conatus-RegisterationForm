@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Email } from '@material-ui/icons';
 import axios from 'axios';
 import { useHistory } from 'react-router';
-import quest from '../../assets/logo quest.png';
+import quest from '../../assets/logo_quest.png';
 import banner from '../../assets/banner.png';
 
 
