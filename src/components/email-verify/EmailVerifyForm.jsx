@@ -55,6 +55,9 @@ const EmailVerifyForm = () => {
                     setSnackbarMessage('OTP Sent successfully');
                     setOpen(true);
                     setIsOtpSent(true);
+                } else {
+                    setSnackbarMessage('OTP not sent. Please try again');
+                    setOpen(true);
                 }
             });
         }
@@ -77,7 +80,13 @@ const EmailVerifyForm = () => {
                     setOpen(true);
                     localStorage.setItem('email', email);
                     history.push('/details');
+                } else {
+                    setSnackbarMessage('Invalid OTP');
+                    setOpen(true);
                 }
+            }).catch((e) => {
+                setSnackbarMessage('Invalid OTP');
+                setOpen(true);
             });
         }
     };

@@ -42,6 +42,7 @@ const Rform = () => {
         recaptcha: '',
     });
 
+    const [message, setMessage] = useState('');
     const [errors, setErrors] = useState({});
     const [open, setOpen] = useState(false);
     const history = useHistory();
@@ -88,10 +89,25 @@ const Rform = () => {
             axios.post('https://conatus-registration.herokuapp.com/users', data).then((res) => {
                 console.log(res);
                 if (res.status === 201) {
+                    setMessage('Form Submitted Successfully');
                     setOpen(true);
-                    setData({});
+                    setData({
+                        email: '',
+                        name: '',
+                        phoneNumber: '',
+                        skills: '',
+                        branch: '',
+                        portfolio: '',
+                        residence: '',
+                        rollNumber: ''
+                    });
                     localStorage.removeItem('email');
+                    history.push('/');
                 }
+            }).catch((e) => {
+                console.log(e.response);
+                setMessage(e.response.data.error)
+                setOpen(true);
             });
         } else {
             console.log('error');
@@ -337,9 +353,10 @@ const Rform = () => {
             </div>
             <Snackbar
                 open={open}
+                anchorOrigin={{vertical: 'top', horizontal: 'center'}}
                 autoHideDuration={2500}
                 onClose={handleClose}
-                message="Form Submitted Successfully"
+                message={message}
             />
         </div>
     );
