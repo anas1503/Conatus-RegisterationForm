@@ -135,7 +135,7 @@ const Rform = () => {
                     <h2 className="heading" style={{ textAlign: 'center' }}>TEAM CONATUS</h2>
                     <h6 className="heading" style={{ textAlign: 'center', margin: '0' }}>PRESENTS</h6>
 
-                    <img src={quest}  height="60px" alt="Illustration"/>
+                    {/* <img src={quest}  height="60px" alt="Illustration"/> */}
 
                 </div>
 
@@ -174,7 +174,7 @@ const Rform = () => {
                         }}
                         autoComplete="off"
                         placeholder="Enter roll number"
-                        label="Roll Number*"
+                        label="Student Number*"
                         value={data.rollNumber}
                         onChange={(e) => handle(e)}
                         variant="outlined"
@@ -259,7 +259,7 @@ const Rform = () => {
                         name="phoneNumber"
                     />
 
-                    <TextField
+                    {/* <TextField
                         helperText='Hint: Codechef, Behance, Github, Portfolio etc'
                         autoComplete="off"
                         InputProps={{
@@ -270,7 +270,7 @@ const Rform = () => {
                             ),
                         }}
                         placeholder="Enter links here..."
-                        label="Link to any handle(if any)"
+                        label="Field of Interest"
                         value={data.portfolio}
                         onChange={(e) => handle(e)}
                         variant="outlined"
@@ -278,7 +278,7 @@ const Rform = () => {
                         multiline
                         className={classes.inputField}
                         name="portfolio"
-                    />
+                    /> */}
                     <TextField
                         error={!!errors.skills}
                         helperText={!!errors.skills ? errors.skills : 'Eg. HTML,C++,Designing,ML etc.'}
@@ -290,8 +290,8 @@ const Rform = () => {
                                 </InputAdornment>
                             ),
                         }}
-                        placeholder="Enter your skills"
-                        label="Skills*"
+                        placeholder=""
+                        label="Field of Interest"
                         value={data.skills}
                         onChange={(e) => handle(e)}
                         variant="outlined"
