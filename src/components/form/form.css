@@ -23,11 +23,11 @@
 
     background: hsla(33, 100%, 53%, 1);
 
-    background: linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
+    background: linear-gradient(90deg, #b53a25 0%,  #f74700 100%);
 
-    background: -moz-linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
+    background: -moz-linear-gradient(90deg, #b53a25 0%,  #f74700 100%);
 
-    background: -webkit-linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, #b53a25 0%, #f74700  100%);
 }
 
 .heading-container {
