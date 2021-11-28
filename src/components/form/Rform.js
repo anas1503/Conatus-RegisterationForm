@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './form.css';
 import banner from '../../assets/banner.png';
-import quest from '../../assets/logo_quest.png';
 import validate from './Validation';
 import {
     TextField,
@@ -13,7 +12,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { AccountCircle, School, Email, Phone, Link, Apps } from '@material-ui/icons'
+import { AccountCircle, School, Email, Phone, Apps } from '@material-ui/icons'
 import { useHistory } from 'react-router';
 import axios from 'axios';
 
@@ -127,8 +126,7 @@ const Rform = () => {
     return (
         <div className="box">
             <div className="box-primary">
-                {/*<img src={logo} className="ill" height="400px" alt="Illustration"/>*/}
-                <img src={banner} className="ill" height="500px" alt="Illustration"/>
+                 <img src={banner} className="ill" height="500px" alt="Illustration"/>
             </div>
             <div className="box-secondary">
                 <div className="heading-container">
@@ -259,26 +257,7 @@ const Rform = () => {
                         name="phoneNumber"
                     />
 
-                    {/* <TextField
-                        helperText='Hint: Codechef, Behance, Github, Portfolio etc'
-                        autoComplete="off"
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <Link/>
-                                </InputAdornment>
-                            ),
-                        }}
-                        placeholder="Enter links here..."
-                        label="Field of Interest"
-                        value={data.portfolio}
-                        onChange={(e) => handle(e)}
-                        variant="outlined"
-                        fullWidth
-                        multiline
-                        className={classes.inputField}
-                        name="portfolio"
-                    /> */}
+                    
                     <TextField
                         error={!!errors.skills}
                         helperText={!!errors.skills ? errors.skills : 'Eg. HTML,C++,Designing,ML etc.'}
@@ -356,8 +335,9 @@ const Rform = () => {
                         }}
                         >
                             Submit
-                        </Button>
+                            </Button>
                     </Box>
+                
 
 
                 </form>

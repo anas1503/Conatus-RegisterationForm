@@ -167,7 +167,7 @@ const EmailVerifyForm = () => {
                         <Button disabled={disabled} fullWidth className="button" variant="contained" color="primary"
                                 onClick={!isOtpSent ? onSubmit : verifyOtp} style={{
                             marginTop: '10px',
-                            backgroundColor: '#e6b938',
+                            backgroundColor: '#f74700',
                         }}
                         >
                             {!isOtpSent ? 'Send OTP' : 'Verify OTP'}
