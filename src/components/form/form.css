@@ -66,6 +66,14 @@
 
 }
 
+.closed{
+    color:#ba381f;
+     margin-top:15%;
+      text-align: center;
+
+
+}
+
 
 @media screen and (max-width: 768px) {
     .box-primary {
@@ -78,5 +86,9 @@
 
     .box {
         grid-template-columns: 100%;
+    }
+
+    .closed{
+         text-align: center;
     }
 }

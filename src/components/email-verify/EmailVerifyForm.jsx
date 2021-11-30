@@ -1,116 +1,116 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../form/form.css';
 
-import {
-    TextField,
-    Button,
-    Box,
-    InputAdornment, Snackbar,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { Email } from '@material-ui/icons';
-import axios from 'axios';
-import { useHistory } from 'react-router';
+// import {
+//     TextField,
+//     Button,
+//     Box,
+//     InputAdornment, Snackbar,
+// } from '@material-ui/core';
+// import { makeStyles } from '@material-ui/core/styles';
+// import { Email } from '@material-ui/icons';
+// import axios from 'axios';
+// import { useHistory } from 'react-router';
 import quest from '../../assets/logo_quest.png';
 import banner from '../../assets/banner.png';
 
  
-const useStyles = makeStyles((theme) => ({
-    inputField: {
-        width: '100%',
-        margin: theme.spacing(1, 0),
-    },
-    menustyle: {
-        padding: '.6rem',
-    },
+// const useStyles = makeStyles((theme) => ({
+//     inputField: {
+//         width: '100%',
+//         margin: theme.spacing(1, 0),
+//     },
+//     menustyle: {
+//         padding: '.6rem',
+//     },
 
 
-}));
+// }));
 
 const EmailVerifyForm = () => {
-    const [email, setEmail] = useState('');
-    const [open, setOpen] = useState(false);
-    const [disabled, setDisabled] = useState(false);
-    const [snackbarMessage, setSnackbarMessage] = useState('');
-    const [otp, setOtp] = useState('');
-    const [isOtpSent, setIsOtpSent] = useState(false);
-    const [error, setError] = useState({
-        email: '',
-        otp: '',
-    });
-    const history = useHistory();
+    // const [email, setEmail] = useState('');
+    // const [open, setOpen] = useState(false);
+    // const [disabled, setDisabled] = useState(false);
+    // const [snackbarMessage, setSnackbarMessage] = useState('');
+    // const [otp, setOtp] = useState('');
+    // const [isOtpSent, setIsOtpSent] = useState(false);
+    // const [error, setError] = useState({
+    //     email: '',
+    //     otp: '',
+    // });
+    // const history = useHistory();
 
-    const handleClose = () => {
-        setOpen(false);
-    }
+    // const handleClose = () => {
+    //     setOpen(false);
+    // }
 
-    const onSubmit = () => {
-        if (!email) {
-            setError({ email: 'Email required', otp: '' });
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
-            setError({ email: 'Invalid email', otp: '' });
-        } else {
-            setDisabled(true);
-            setError({ email: '', otp: '' });
-            // send otp
-            axios.post('https://conatus-registration.herokuapp.com/sendOTP', { email }).then((res) => {
-                console.log(res);
-                if (res.status === 201) {
-                    setSnackbarMessage('OTP Sent successfully');
-                    setOpen(true);
-                    setIsOtpSent(true);
-                    setDisabled(false);
-                } else {
-                    setSnackbarMessage('OTP not sent. Please try again');
-                    setOpen(true);
-                    setDisabled(false);
-                }
-            }).catch((e) => {
-                setSnackbarMessage('OTP not sent. Please try again');
-                setDisabled(false);
-                setOpen(true);
-            });
-        }
-    };
+    // const onSubmit = () => {
+    //     if (!email) {
+    //         setError({ email: 'Email required', otp: '' });
+    //     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+    //         setError({ email: 'Invalid email', otp: '' });
+    //     } else {
+    //         setDisabled(true);
+    //         setError({ email: '', otp: '' });
+    //         // send otp
+    //         axios.post('https://conatus-registration.herokuapp.com/sendOTP', { email }).then((res) => {
+    //             console.log(res);
+    //             if (res.status === 201) {
+    //                 setSnackbarMessage('OTP Sent successfully');
+    //                 setOpen(true);
+    //                 setIsOtpSent(true);
+    //                 setDisabled(false);
+    //             } else {
+    //                 setSnackbarMessage('OTP not sent. Please try again');
+    //                 setOpen(true);
+    //                 setDisabled(false);
+    //             }
+    //         }).catch((e) => {
+    //             setSnackbarMessage('OTP not sent. Please try again');
+    //             setDisabled(false);
+    //             setOpen(true);
+    //         });
+    //     }
+    // };
  
 
  
-    const verifyOtp = () => {
-        console.log('inside verify', otp, otp.length);
-        if (!otp) {
-            setError({ email: '', otp: 'OTP required' });
-        } else if (otp <= 99999 || otp > 999999) {
-            setError({ email: '', otp: 'OTP should be of 6 digits' });
-        } else {
-            // verify otp
-            setDisabled(true);
-            setError({ email: '', otp: '' });
-            console.log(otp);
-            axios.post('https://conatus-registration.herokuapp.com/verifyOTP', { email, otp: Number(otp) }).then((res) => {
-                console.log(res);
-                if (res.status === 201) {
-                    setSnackbarMessage('OTP Verified successfully');
-                    setOpen(true);
-                    localStorage.setItem('email', email);
-                    setTimeout(() => {
-                        setDisabled(false);
-                        history.push('/details');
-                    }, 1500);
-                } else {
-                    setSnackbarMessage('Invalid OTP');
-                    setOpen(true);
-                    setDisabled(false);
-                }
-            }).catch((e) => {
-                setSnackbarMessage('Invalid OTP');
-                setOpen(true);
-                setDisabled(false);
-            });
-        }
-    };
+    // const verifyOtp = () => {
+    //     console.log('inside verify', otp, otp.length);
+    //     if (!otp) {
+    //         setError({ email: '', otp: 'OTP required' });
+    //     } else if (otp <= 99999 || otp > 999999) {
+    //         setError({ email: '', otp: 'OTP should be of 6 digits' });
+    //     } else {
+    //         // verify otp
+    //         setDisabled(true);
+    //         setError({ email: '', otp: '' });
+    //         console.log(otp);
+    //         axios.post('https://conatus-registration.herokuapp.com/verifyOTP', { email, otp: Number(otp) }).then((res) => {
+    //             console.log(res);
+    //             if (res.status === 201) {
+    //                 setSnackbarMessage('OTP Verified successfully');
+    //                 setOpen(true);
+    //                 localStorage.setItem('email', email);
+    //                 setTimeout(() => {
+    //                     setDisabled(false);
+    //                     history.push('/details');
+    //                 }, 1500);
+    //             } else {
+    //                 setSnackbarMessage('Invalid OTP');
+    //                 setOpen(true);
+    //                 setDisabled(false);
+    //             }
+    //         }).catch((e) => {
+    //             setSnackbarMessage('Invalid OTP');
+    //             setOpen(true);
+    //             setDisabled(false);
+    //         });
+    //     }
+    // };
 
 
-    const classes = useStyles();
+    // const classes = useStyles();
     return (
         <div className="box">
             <div className="box-primary">
@@ -125,7 +125,8 @@ const EmailVerifyForm = () => {
 
             </div>
 
-                <form>
+            <h1 className="closed">REGISTRATION HAS BEEN CLOSED!!</h1>
+                 {/* <form>
                     {
                         !isOtpSent && <TextField 
                             error={!!error.email}
@@ -174,15 +175,15 @@ const EmailVerifyForm = () => {
                             {!isOtpSent ? 'Send OTP' : 'Verify OTP'}
                         </Button>
                     </Box>
-                </form>
+                </form> */}
             </div>
-            <Snackbar
+            {/* <Snackbar
                 open={open}
                 anchorOrigin={{vertical: 'top', horizontal: 'center'}}
                 autoHideDuration={1500}
                 onClose={handleClose}
                 message={snackbarMessage}
-            />
+            /> */}
         </div>
     );
 };
