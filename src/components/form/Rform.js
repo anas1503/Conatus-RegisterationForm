@@ -216,10 +216,10 @@ const Rform = () => {
                         <MenuItem className={classes.menustyle} value="IT">
                             IT
                         </MenuItem>
-                        <MenuItem className={classes.menustyle} value="IT">
+                        <MenuItem className={classes.menustyle} value="ECE">
                             ECE
                         </MenuItem>
-                        <MenuItem className={classes.menustyle} value="IT">
+                        <MenuItem className={classes.menustyle} value="EN">
                             EN
                         </MenuItem>
                     </TextField>
