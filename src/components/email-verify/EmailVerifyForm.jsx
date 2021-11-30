@@ -14,7 +14,7 @@ import { useHistory } from 'react-router';
 import quest from '../../assets/logo_quest.png';
 import banner from '../../assets/banner.png';
 
-
+ 
 const useStyles = makeStyles((theme) => ({
     inputField: {
         width: '100%',
@@ -72,7 +72,9 @@ const EmailVerifyForm = () => {
             });
         }
     };
+ 
 
+ 
     const verifyOtp = () => {
         console.log('inside verify', otp, otp.length);
         if (!otp) {
@@ -112,21 +114,20 @@ const EmailVerifyForm = () => {
     return (
         <div className="box">
             <div className="box-primary">
-                {/*<img src={logo} className="ill" height="400px" alt="Illustration"/>*/}
-                <img src={banner} className="ill" height="500px" alt="Illustration"/>
+                 <img src={banner} className="ill" height="500px" alt="Illustration"/>
             </div>
             <div className="box-secondary">
                 <div className="heading-container">
                     <h2 className="heading" style={{ textAlign: 'center' }}>TEAM CONATUS</h2>
                     <h6 className="heading" style={{ textAlign: 'center', margin: '0' }}>PRESENTS</h6>
 
-                    <img src={quest}  height="60px" alt="Illustration"/>
+                    <img src={quest} style={{marginTop:"3%"}}  height="30px" alt="Illustration"/>
 
             </div>
 
                 <form>
                     {
-                        !isOtpSent && <TextField
+                        !isOtpSent && <TextField 
                             error={!!error.email}
                             helperText={!!error.email ? error.email : 'Eg. ayushXXXXXX@akgec.ac.in'}
                             autoComplete="off"
@@ -167,7 +168,7 @@ const EmailVerifyForm = () => {
                         <Button disabled={disabled} fullWidth className="button" variant="contained" color="primary"
                                 onClick={!isOtpSent ? onSubmit : verifyOtp} style={{
                             marginTop: '10px',
-                            backgroundColor: '#f74700',
+                            backgroundColor: '#ba381f',
                         }}
                         >
                             {!isOtpSent ? 'Send OTP' : 'Verify OTP'}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './form.css';
 import banner from '../../assets/banner.png';
+import quest from '../../assets/logo_quest.png';
 import validate from './Validation';
 import {
     TextField,
@@ -16,6 +17,8 @@ import { AccountCircle, School, Email, Phone, Apps } from '@material-ui/icons'
 import { useHistory } from 'react-router';
 import axios from 'axios';
 
+
+ 
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
@@ -133,7 +136,7 @@ const Rform = () => {
                     <h2 className="heading" style={{ textAlign: 'center' }}>TEAM CONATUS</h2>
                     <h6 className="heading" style={{ textAlign: 'center', margin: '0' }}>PRESENTS</h6>
 
-                    {/* <img src={quest}  height="60px" alt="Illustration"/> */}
+                    <img src={quest} style={{marginTop:"2%"}}  height="30px" alt="Illustration"/>
 
                 </div>
 
@@ -212,6 +215,12 @@ const Rform = () => {
                         </MenuItem>
                         <MenuItem className={classes.menustyle} value="IT">
                             IT
+                        </MenuItem>
+                        <MenuItem className={classes.menustyle} value="IT">
+                            ECE
+                        </MenuItem>
+                        <MenuItem className={classes.menustyle} value="IT">
+                            EN
                         </MenuItem>
                     </TextField>
 
@@ -331,7 +340,7 @@ const Rform = () => {
                         <Button disabled={disabled} fullWidth className="button" variant="contained" color="primary"
                                 onClick={onSubmit} style={{
                             marginTop: '10px',
-                            backgroundColor: '#f74700',
+                            backgroundColor: '#ba381f',
                         }}
                         >
                             Submit

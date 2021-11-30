@@ -23,11 +23,11 @@
 
     background: hsla(33, 100%, 53%, 1);
 
-    background: linear-gradient(90deg, #b53a25 0%,  #f74700 100%);
+    background: linear-gradient(90deg, #ba381f 0%,  #b5154b 100%);
 
-    background: -moz-linear-gradient(90deg, #b53a25 0%,  #f74700 100%);
+    background: -moz-linear-gradient(90deg, #ba381f 0%,  #b5154b 100%);
 
-    background: -webkit-linear-gradient(90deg, #b53a25 0%, #f74700  100%);
+    background: -webkit-linear-gradient(90deg, #ba381f 0%, #b5154b  100%);
 }
 
 .heading-container {
@@ -61,6 +61,7 @@
 }
 
 .quest{
+    margin-top: 2%;
     text-align: center;
 
 }
